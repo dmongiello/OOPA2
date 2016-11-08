@@ -7,7 +7,7 @@
  *             This class if for Java Swing componites
  *             Mostly
  */
-package OOPA2.Panels;
+package OOPA2.PanelsSingleton;
 
 import OOPA2.Composite.User;
 import OOPA2.Composite.Group;

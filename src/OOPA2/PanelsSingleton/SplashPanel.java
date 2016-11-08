@@ -5,7 +5,7 @@
  * Date Last Modified : 11/7/2016
  * Purpose :  Creates a classy splash screen to look at while loading.
  */
-package OOPA2.Panels;
+package OOPA2.PanelsSingleton;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

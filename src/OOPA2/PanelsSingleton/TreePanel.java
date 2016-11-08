@@ -6,7 +6,7 @@
  * Purpose :  Create a Singlton class that handles the display of 
  *            The tree view controller. 
  */
-package OOPA2.Panels;
+package OOPA2.PanelsSingleton;
 
 import OOPA2.Composite.User;
 import OOPA2.Composite.Group;

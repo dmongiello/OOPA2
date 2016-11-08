@@ -9,9 +9,9 @@
  *            creates and instance of a User View object 
  *            Parameters User
  */
-package OOPA2.Panels;
+package OOPA2.PanelsSingleton;
 
-import OOPA2.Panels.TreePanel;
+import OOPA2.PanelsSingleton.TreePanel;
 import OOPA2.Composite.User;
 import java.awt.Color;
 import java.awt.Container;

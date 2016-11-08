@@ -7,8 +7,8 @@
  */
 
 package OOPA2;
-import OOPA2.Panels.MainScreen;
-import OOPA2.Panels.SplashPanel;
+import OOPA2.PanelsSingleton.MainScreen;
+import OOPA2.PanelsSingleton.SplashPanel;
  import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
