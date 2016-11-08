@@ -1,14 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Author:  David R. Mongiello
+ * Course Name: Object Oreinted Programing
+ * Assignment : OOP assignment 2
+ * Date Last Modified : 11/7/2016
+ * Purpose :  To create a concreat observer class 
  */
 
 package OOPA2;
+import OOPA2.Panels.MainScreen;
+import OOPA2.Panels.SplashPanel;
  import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -90,8 +91,9 @@ public class mainFrame extends javax.swing.JFrame {
             final CardLayout cardLayout = new CardLayout();
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             final Container contentPane = f.getContentPane();
-            final String path = "src/javaapplication2/";
             contentPane.setLayout(cardLayout);
+            
+            // This is for the splash panel
             final SplashPanel splashPanel = new SplashPanel();
 
             final MainScreen mainScreen = new MainScreen();
@@ -110,23 +112,8 @@ public class mainFrame extends javax.swing.JFrame {
             t.start(); 
            
         }
-        // All this timer stuff is for the splash screen action. 
-        private static class UpdateClockAction implements ActionListener {
-        private Timer t;
-        private CardLayout c;
-        private Container p;
-
-        public UpdateClockAction( CardLayout cc,Container pp  ) 
-        {
-        c = cc;
-        p = pp;
-        }
+        
     
-        public void actionPerformed(ActionEvent e) {
-            c.show(p, "Main Screen");
-            
-        }
-    }
          
     }
 

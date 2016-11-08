@@ -1,9 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Author:  David R. Mongiello
+ * Course Name: Object Oreinted Programing
+ * Assignment : OOP assignment 2
+ * Date Last Modified : 11/7/2016
+ * Purpose :  Creates a classy splash screen to look at while loading.
  */
-package OOPA2;
+package OOPA2.Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,15 +14,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 /**
@@ -44,7 +42,6 @@ caption.setFont(new Font("Jokerman", Font.PLAIN, 48));
 team.setFont(new Font("Jokerman", Font.PLAIN, 20));
 caption.setAlignmentX(Component.CENTER_ALIGNMENT);
 team.setAlignmentX(Component.CENTER_ALIGNMENT);
-int gap = 5;
 setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 add(Box.createRigidArea(new Dimension(5,30)));

@@ -1,15 +1,23 @@
 /*
- * This Class is for the User View
- * The purpose of this class is to act as an object for a user to 
- * follow users and send msg. 
- * creates and instance of a User View object 
- * Parameters User
+* Author:  David R. Mongiello
+ * Course Name: Object Oreinted Programing
+ * Assignment : OOP assignment 2
+ * Date Last Modified : 11/7/2016
+ * Purpose:  This Class is for the User View
+ *            The purpose of this class is to act as an object 
+ *            for a user to follow users and send msg. 
+ *            creates and instance of a User View object 
+ *            Parameters User
  */
-package OOPA2;
+package OOPA2.Panels;
 
+import OOPA2.Panels.TreePanel;
+import OOPA2.Composite.User;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -27,9 +35,33 @@ import javax.swing.ListSelectionModel;
  * @author davidmongiello
  */
 public class UserView extends JPanel {
-   
-  public UserView()
+   JTextField tweetMsg = new JTextField();
+   JTextField userID = new JTextField();
+  public UserView(User user)
   {
+     ActionListener sendTweet;
+        sendTweet = new ActionListener() 
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            user.sendTweet(user.toString() + " - " + tweetMsg.getText());
+        }   
+    };
+        ActionListener followUser;
+        followUser = new ActionListener() 
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            String temp = userID.getText();
+            if(TreePanel.INSTANCE.findID(temp))
+            {
+              user.addFollow(temp);
+              User newUser = TreePanel.INSTANCE.getUser(); 
+              newUser.attach(user.getObserver());
+            }
+            
+        }   
+    };
     // Set the border color of the panel
     setBorder(BorderFactory.createLineBorder(Color.darkGray));
     // Set the background of this panel
@@ -37,23 +69,21 @@ public class UserView extends JPanel {
     // Declare all the controls and set their max values 
     // and prefered values. They are declared in order they show up on the
     // panel. 
-    JTextField userID = new JTextField(); 
+    
+    userID.setText(user.toString());
     userID.setMaximumSize(new Dimension(250,60));
-    JButton followUser = new JButton("Follow User");
-    followUser.setMaximumSize(new Dimension(150,60));
-    followUser.setPreferredSize(new Dimension(150,60));
-    JTextField tweetMsg = new JTextField();
+    JButton followUserBtn = new JButton("Follow User");
+    followUserBtn.addActionListener(followUser);
+    followUserBtn.setMaximumSize(new Dimension(150,60));
+    followUserBtn.setPreferredSize(new Dimension(150,60));
+    
     tweetMsg.setMaximumSize(new Dimension(250,60));
     JButton postTweet = new JButton("Post Tweet");
+    postTweet.addActionListener(sendTweet);
     postTweet.setMaximumSize(new Dimension(150,60));
     postTweet.setPreferredSize(new Dimension(150,60));
-    // Make a tempary list of people to add to the list views
-    DefaultListModel listModel = new DefaultListModel();
-    listModel.addElement("Jane Doe");
-    listModel.addElement("John Smith");
-    listModel.addElement("Kathy Green");
      // Jlist view 1 for whom the user is currently following. 
-    JList currentFollowing = new JList(listModel);
+    JList currentFollowing = new JList(user.getFollowings());
     currentFollowing.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     currentFollowing.setLayoutOrientation(JList.VERTICAL);
     currentFollowing.setVisibleRowCount(-1);
@@ -62,7 +92,7 @@ public class UserView extends JPanel {
     listScroller.setPreferredSize(new Dimension(250, 80));
     listScroller.setMaximumSize(new Dimension(380, 100));
     // JList two for newsfeed. 
-    JList newsFeed = new JList(listModel);
+    JList newsFeed = new JList(user.getNewsFeed());
     newsFeed.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
     newsFeed.setLayoutOrientation(JList.VERTICAL);
     newsFeed.setVisibleRowCount(-1);
@@ -77,7 +107,7 @@ public class UserView extends JPanel {
     // Create first Line of controls
     contentPane.setLayout(new BoxLayout(contentPane,BoxLayout.X_AXIS)); 
     contentPane.add(userID);
-    contentPane.add(followUser);
+    contentPane.add(followUserBtn);
     // The following list view
     contentPane2.setLayout(new BoxLayout(contentPane2,BoxLayout.X_AXIS));  
     contentPane2.add(listScroller);
