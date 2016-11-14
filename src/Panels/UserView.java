@@ -2,16 +2,16 @@
 * Author:  David R. Mongiello
  * Course Name: Object Oreinted Programing
  * Assignment : OOP assignment 2
- * Date Last Modified : 11/7/2016
+ * Date Last Modified : 11/13/2016
  * Purpose:  This Class is for the User View
  *            The purpose of this class is to act as an object 
  *            for a user to follow users and send msg. 
  *            creates and instance of a User View object 
  *            Parameters User
  */
-package OOPA2.PanelsSingleton;
+package Panels;
 
-import OOPA2.PanelsSingleton.TreePanel;
+import OOPA2.Singleton.TreePanel;
 import OOPA2.Composite.User;
 import java.awt.Color;
 import java.awt.Container;
@@ -39,28 +39,31 @@ public class UserView extends JPanel {
    JTextField userID = new JTextField();
   public UserView(User user)
   {
-     ActionListener sendTweet;
-        sendTweet = new ActionListener() 
+    ActionListener sendTweet;
+    sendTweet = new ActionListener() 
     {
-        public void actionPerformed(ActionEvent e) 
-        {
-            user.sendTweet(user.toString() + " - " + tweetMsg.getText());
-        }   
+      public void actionPerformed(ActionEvent e) 
+      {
+        user.sendTweet(user.toString() + " - " + tweetMsg.getText());
+      }   
     };
         ActionListener followUser;
-        followUser = new ActionListener() 
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-            String temp = userID.getText();
-            if(TreePanel.INSTANCE.findID(temp))
-            {
-              user.addFollow(temp);
-              User newUser = TreePanel.INSTANCE.getUser(); 
-              newUser.attach(user.getObserver());
-            }
-            
-        }   
+    followUser = new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        String temp = userID.getText();
+        // Check to see if the user exit 
+        if (TreePanel.INSTANCE.findID(temp) != null) {
+          if (isFollowing(user, temp)) {
+            // put warning that user is already following. 
+          } else // Add the following and update the subject. 
+          {
+            user.addFollow(temp);
+            User newUser = TreePanel.INSTANCE.getUser(userID.getText());
+            newUser.attach(user.getObserver());
+          }
+        }
+
+      }
     };
     // Set the border color of the panel
     setBorder(BorderFactory.createLineBorder(Color.darkGray));
@@ -70,7 +73,6 @@ public class UserView extends JPanel {
     // and prefered values. They are declared in order they show up on the
     // panel. 
     
-    userID.setText(user.toString());
     userID.setMaximumSize(new Dimension(250,60));
     JButton followUserBtn = new JButton("Follow User");
     followUserBtn.addActionListener(followUser);
@@ -128,6 +130,18 @@ public class UserView extends JPanel {
     add(contentPane3);
     add(Box.createRigidArea(new Dimension(5,10)));
     add(contentPane4);  
+}
+  
+// Checks a user to see if he/she is following another user already. 
+private boolean isFollowing(User user, String target)
+{
+  
+  DefaultListModel following =  user.getFollowings();
+  if (following.contains(target))
+  {
+    return true;
+  }
+  return false;
 }
 /*
 *  Method: getPreferredSize

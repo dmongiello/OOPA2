@@ -1,10 +1,11 @@
 /*
- * File name : 
+ * File name : UpdatedClockAction.java
  * Author:  David R. Mongiello
  * Course Name: Object Oreinted Programing
  * Assignment : OOP Assignment 2
- * Date Last Modified : 11/7/2016
- * Purpose :  
+ * Date Last Modified : 11/13/2016
+ * Purpose :  This is a anctionLister class that run the clock for the 
+              splash screen.
  */
 package OOPA2;
 

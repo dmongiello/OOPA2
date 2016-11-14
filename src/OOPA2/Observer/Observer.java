@@ -16,19 +16,10 @@ import javax.swing.DefaultListModel;
  * @author davidmongiello
  */
 public interface Observer {
-  public void update(Subject subject);
-
-  public String getID();
-  public DefaultListModel getNewsFeed(); 
-  public Subject getSubject(); 
-  public void setTweet(String newTweet);
-  public DefaultListModel getFollowings();
-  public void addFollow(String newFollow);
-  public void attach(Observer observer);
+  public void update(Subject subject); 
+  public String getID();  
   public Observer getObserver();
   
- 
- 
   
   
 }

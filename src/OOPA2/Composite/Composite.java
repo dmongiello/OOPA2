@@ -8,6 +8,7 @@
  */
 package OOPA2.Composite;
 
+import OOPA2.Visitor.Visitor;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,8 +16,8 @@ import javax.swing.DefaultListModel;
  * @author davidmongiello
  */
 public interface Composite {
-  
-  public DefaultListModel getNewsFeed(); 
+  // This is to enable visitor pattern into the composite pattern. 
+  public void accept(Visitor visitor);
   
   @Override
   public String toString();
